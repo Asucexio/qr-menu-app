@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
+    "@clerk/express": "^2.1.19",
     "@supabase/supabase-js": "^2.106.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
