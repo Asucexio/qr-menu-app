@@ -1,29 +1,26 @@
 {
-  "name": "api",
+  "name": "qr-menu-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "QR Menu Builder - Express Backend",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "dependencies": {
-    "@clerk/clerk-sdk-node": "^4.13.23",
-    "@clerk/express": "^2.1.19",
-    "@supabase/supabase-js": "^2.106.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0",
-    "morgan": "^1.10.1",
-    "qrcode": "^1.5.4",
-    "zod": "^4.4.3"
+    "@clerk/backend": "^3.4.11",
+    "@clerk/express": "^1.0.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "qrcode": "^1.5.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.0.3"
   }
 }
