@@ -1,4 +1,4 @@
-import { getUserId } from '../middlewares/clerkAuth.js';
+import { getUserId } from '../middlewares/auth.js';
 import { chapaInitialize, chapaVerify }
   from '../lib/chapaClient.js';
 import supabase from '../lib/supabaseClient.js';
