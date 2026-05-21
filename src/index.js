@@ -7,7 +7,7 @@ import morgan from 'morgan';
 // routes
 import authRoutes         from './routes/auth.js';
 import restaurantRoutes   from './routes/restaurants.js';
-// import menuRoutes         from './routes/menus.js';
+import menuRoutes         from './routes/menus.js';
 // import categoryRoutes     from './routes/categories.js';
 // import itemRoutes         from './routes/items.js';
 // import subscriptionRoutes from './routes/subscriptions.js';
@@ -44,7 +44,7 @@ app.get('/health', (req, res) => {
 // ── API Routes ──────────────────────────────────────────────
 app.use('/api/auth',          authRoutes);
 app.use('/api/restaurants',   restaurantRoutes);
-// app.use('/api/menus',         menuRoutes);
+app.use('/api/menus',         menuRoutes);
 // app.use('/api/categories',    categoryRoutes);
 // app.use('/api/items',         itemRoutes);
 // app.use('/api/subscriptions', subscriptionRoutes);
