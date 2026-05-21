@@ -10,11 +10,11 @@ import restaurantRoutes   from './routes/restaurants.js';
 import menuRoutes         from './routes/menus.js';
 import categoryRoutes     from './routes/categories.js';
 import itemRoutes         from './routes/items.js';
-// import subscriptionRoutes from './routes/subscriptions.js';
+import subscriptionRoutes from './routes/subscriptions.js';
 import qrRoutes           from './routes/qrCodes.js';
 
 // webhook (needs raw body — registered BEFORE json parser)
-// import chapaWebhook from './webhooks/chapa.js';
+import chapaWebhook from './webhooks/chapa.js';
 
 // error handler
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -30,7 +30,7 @@ app.use(cors({
 app.use(morgan('dev'));
 
 // ── Chapa webhook — raw body BEFORE json parser ─────────────
-// app.use('/api/webhooks/chapa', express.raw({ type: '*/*' }), chapaWebhook);
+app.use('/api/webhooks/chapa', express.raw({ type: '*/*' }), chapaWebhook);
 
 // ── Body parsers ────────────────────────────────────────────
 app.use(express.json());
@@ -47,7 +47,7 @@ app.use('/api/restaurants',   restaurantRoutes);
 app.use('/api/menus',         menuRoutes);
 app.use('/api/categories',    categoryRoutes);
 app.use('/api/items',         itemRoutes);
-// app.use('/api/subscriptions', subscriptionRoutes);
+app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/qr',            qrRoutes);
 
 // ── 404 ─────────────────────────────────────────────────────
