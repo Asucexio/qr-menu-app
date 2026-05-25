@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { QrCode, Download, RefreshCw, ExternalLink } from 'lucide-react'
 import toast from 'react-hot-toast'
-import {QRCodeReact} from 'qrcode.react'
+import {QRCodeSVG} from 'qrcode.react'
 import { useRestaurantStore } from '@/store/restaurantStore'
 import { qrApi } from '@/lib/api'
 import { Button } from '@/components/ui/Button'
@@ -69,7 +69,7 @@ export default function QRCodesPage() {
                 {/* QR preview */}
                 <div className="flex items-center justify-center bg-gray-50 rounded-xl p-6 mb-4 min-h-[200px]">
                   {qr ? (
-                    <QRCodeReact value={qr.public_url} size={160} level="H" />
+                    <QRCodeSVG value={qr.public_url} size={160} level="H" />
                   ) : (
                     <div className="text-center text-gray-400">
                       <QrCode size={48} className="mx-auto mb-2 opacity-30" />

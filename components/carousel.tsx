@@ -271,7 +271,7 @@ const Carousel: React.FC<PropType> = (props) => {
 
           {showPlay && autoplayDelay > 0 && (
             <Button
-              size={"icon"}
+              size={"sm"}
               variant={"secondary"}
               onClick={toggleAutoplay}
               type="button"
