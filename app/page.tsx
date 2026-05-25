@@ -267,7 +267,7 @@ export default function LandingPage() {
             <div className="lp-step">
               <div className="lp-step__num">01</div>
               <div className="lp-step__visual"> 
-               <img src="https://images.edrawmax.com/examples/menu/1.jpg" alt="Build menu" className="lp-step__img"/>
+               <img src="https://ik.imagekit.io/sl226drpx/a-professional-product-photography-shot-_UAFbpgn6SqS-nn6jIt4JXA_B_OzBAbvSoSlI6nHvozssQ_sd.jpeg" alt="Build menu" className="lp-step__img"/>
               </div>
               <h3 className="lp-step__title">Build your menu</h3>
               <p className="lp-step__desc">Sign up, create your restaurant, add categories like Starters, Mains, and Drinks, then add your items with prices and photos.</p>
@@ -278,7 +278,7 @@ export default function LandingPage() {
             <div className="lp-step">
               <div className="lp-step__num">02</div>
               <div className="lp-step__visual">
-                <img src="https://www.plasticsales.com/wp-content/uploads/2020/07/qr-code-2-style.jpg" alt="Generate QR" className="lp-step__img"/>
+                <img src="https://ik.imagekit.io/sl226drpx/a-clean-modern-user-interface-design-sho_dmdjGEPsUMGuvGy1fLhEWg_ocgXTblFQXSmonSMpxPfJA_sd.jpeg" alt="Generate QR" className="lp-step__img"/>
               </div>
               <h3 className="lp-step__title">Generate your QR code</h3>
               <p className="lp-step__desc">Click generate — your unique QR code is ready instantly. Download it as a PNG and print it on table cards or tent cards.</p>
@@ -620,7 +620,7 @@ export default function LandingPage() {
         .lp-faq__a { font-size: 14px; color: #666; line-height: 1.75; padding: 0 0 20px; }
 
         /* CTA */
-        .lp-cta { padding: 100px 24px; background: #16a34a; position: relative; overflow: hidden; text-align: center; }
+        .lp-cta { padding: 100px 24px; background: #1A273C; position: relative; overflow: hidden; text-align: center; }
         .lp-cta__bg { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,.08), transparent 60%), radial-gradient(circle at 80% 50%, rgba(255,255,255,.06), transparent 60%); pointer-events: none; }
         .lp-cta__inner { position: relative; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .lp-cta__title { font-family: 'Instrument Serif', serif; font-size: clamp(32px, 4vw, 48px); color: #fff; margin: 0; line-height: 1.15; }
