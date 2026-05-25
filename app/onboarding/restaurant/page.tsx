@@ -8,14 +8,7 @@ import { useRestaurantStore } from '@/store/restaurantStore'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import type { Restaurant } from '@/lib/types'
-
-const readFileAsDataUrl = (file: File) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result as string)
-    reader.onerror = () => reject(new Error('Failed to read file'))
-    reader.readAsDataURL(file)
-  })
+import { optimizeImageToDataUrl } from '@/components/ui/imageDataUrl'
 
 export default function OnboardingRestaurantPage() {
   const { createRestaurant } = useRestaurantStore()
@@ -35,18 +28,23 @@ export default function OnboardingRestaurantPage() {
       return
     }
 
-    const maxFileSize = 2 * 1024 * 1024
+    const maxFileSize = 5 * 1024 * 1024
     if (file.size > maxFileSize) {
-      toast.error('Logo must be smaller than 2MB')
+      toast.error('Logo must be smaller than 5MB')
       return
     }
 
     try {
-      const dataUrl = await readFileAsDataUrl(file)
+      const dataUrl = await optimizeImageToDataUrl(file, {
+        maxWidth: 560,
+        maxHeight: 560,
+        quality: 0.72,
+        maxBytes: 55 * 1024,
+      })
       setValue('logo_url', dataUrl, { shouldDirty: true })
       setLogoPreview(dataUrl)
     } catch {
-      toast.error('Could not read the selected file')
+      toast.error('Could not process image. Please use a smaller image.')
     }
   }
 

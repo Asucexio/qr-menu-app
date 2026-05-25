@@ -33,7 +33,7 @@ export async function optimizeImageToDataUrl(file: File, options: ImageDataUrlOp
     maxHeight = 1024,
     quality = 0.78,
     mimeType = 'image/jpeg',
-    maxBytes = 180 * 1024,
+    maxBytes = 70 * 1024,
   } = options
 
   const srcDataUrl = await fileToDataUrl(file)
@@ -61,7 +61,27 @@ export async function optimizeImageToDataUrl(file: File, options: ImageDataUrlOp
   }
 
   if (dataUrlByteLength(result) > maxBytes) {
-    throw new Error('Image is still too large after optimization')
+    const shrinkCanvas = document.createElement('canvas')
+    let shrinkWidth = width
+    let shrinkHeight = height
+    let shrunk = result
+
+    while (dataUrlByteLength(shrunk) > maxBytes && shrinkWidth > 220 && shrinkHeight > 220) {
+      shrinkWidth = Math.round(shrinkWidth * 0.85)
+      shrinkHeight = Math.round(shrinkHeight * 0.85)
+      shrinkCanvas.width = shrinkWidth
+      shrinkCanvas.height = shrinkHeight
+      const shrinkCtx = shrinkCanvas.getContext('2d')
+      if (!shrinkCtx) break
+      shrinkCtx.drawImage(image, 0, 0, shrinkWidth, shrinkHeight)
+      shrunk = shrinkCanvas.toDataURL(mimeType, Math.max(0.45, currentQuality - 0.08))
+    }
+
+    if (dataUrlByteLength(shrunk) > maxBytes) {
+      throw new Error('Image is still too large after optimization')
+    }
+
+    return shrunk
   }
 
   return result

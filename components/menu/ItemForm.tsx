@@ -50,10 +50,10 @@ export function ItemForm({ categoryId, item, onSubmit, onCancel, loading }: Item
 
     try {
       const dataUrl = await optimizeImageToDataUrl(file, {
-        maxWidth: 960,
-        maxHeight: 960,
-        quality: 0.76,
-        maxBytes: 160 * 1024,
+        maxWidth: 720,
+        maxHeight: 720,
+        quality: 0.72,
+        maxBytes: 65 * 1024,
       })
       setValue('image_url', dataUrl, { shouldDirty: true })
       setImagePreview(dataUrl)
