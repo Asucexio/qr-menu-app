@@ -1,10 +1,46 @@
 import React, { useState } from 'react';
 
-const PremiumPricingSection = () => {
-  const [billingCycle, setBillingCycle] = useState('monthly');
+/**
+ * PREMIUM PRICING SECTION - FULLY TYPED TYPESCRIPT COMPONENT
+ * 
+ * This is a production-ready pricing section with:
+ * ✓ Full TypeScript support with proper type definitions
+ * ✓ Interactive billing toggle (Monthly/Annual)
+ * ✓ Feature comparison across plans
+ * ✓ Smooth animations and micro-interactions
+ * ✓ Responsive design (mobile & desktop)
+ * ✓ Dark theme with glassmorphism
+ * ✓ Zero external dependencies
+ */
+
+// Type Definitions
+interface Feature {
+  text: string;
+  included: boolean;
+}
+
+interface Plan {
+  id: string;
+  name: string;
+  monthlyPrice: number | null;
+  annualPrice: number | null;
+  description: string;
+  badge: string | null;
+  highlighted: boolean;
+  features: Feature[];
+  cta: string;
+  color: string;
+}
+
+type BillingCycle = 'monthly' | 'annual';
+
+// Main Component
+const PremiumPricingSection: React.FC = () => {
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>('monthly');
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
 
-  const plans = [
+  // Plans data with full type safety
+  const plans: Plan[] = [
     {
       id: 'basic',
       name: 'Basic',
@@ -70,14 +106,16 @@ const PremiumPricingSection = () => {
     }
   ];
 
-  const getPrice = (plan: { monthlyPrice: number | null; annualPrice: number | null }) => {
+  // Helper: Get price based on billing cycle
+  const getPrice = (plan: Plan): number | null => {
     if (billingCycle === 'monthly') {
       return plan.monthlyPrice;
     }
     return plan.annualPrice;
   };
 
-  const getSavings = (plan: { monthlyPrice: number | null; annualPrice: number | null }) => {
+  // Helper: Calculate savings percentage
+  const getSavings = (plan: Plan): number => {
     if (!plan.monthlyPrice || !plan.annualPrice) return 0;
     return Math.round((1 - plan.annualPrice / (plan.monthlyPrice * 12)) * 100);
   };
@@ -94,7 +132,7 @@ const PremiumPricingSection = () => {
         .premium-pricing-section {
           width: 100%;
           background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-          padding: 60px 40px;  /* Changed from 100px to 60px - decreased height */
+          padding: 100px 40px;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
           position: relative;
           overflow: hidden;
@@ -115,7 +153,7 @@ const PremiumPricingSection = () => {
         }
 
         .pricing-container {
-          max-width: 1100px;
+          max-width: 1200px;
           margin: 0 auto;
           position: relative;
           z-index: 1;
@@ -123,7 +161,7 @@ const PremiumPricingSection = () => {
 
         .pricing-header {
           text-align: center;
-          margin-bottom: 50px;  /* Reduced from 80px */
+          margin-bottom: 80px;
           animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -168,7 +206,7 @@ const PremiumPricingSection = () => {
           justify-content: center;
           align-items: center;
           gap: 24px;
-          margin-bottom: 50px;  /* Reduced from 80px */
+          margin-bottom: 80px;
           animation: slideUp 0.8s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
 
@@ -232,13 +270,13 @@ const PremiumPricingSection = () => {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
           gap: 32px;
-          margin-bottom: 40px;  /* Reduced from 60px */
+          margin-bottom: 60px;
         }
 
         .pricing-card {
           background: rgba(30, 41, 59, 0.8);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba(209, 211, 214, 0.1);
+          border: 1px solid rgba(148, 163, 184, 0.1);
           border-radius: 16px;
           padding: 40px 32px;
           position: relative;
@@ -430,11 +468,11 @@ const PremiumPricingSection = () => {
 
         @media (max-width: 768px) {
           .premium-pricing-section {
-            padding: 40px 20px;  /* Reduced for mobile as well */
+            padding: 60px 20px;
           }
 
           .pricing-header {
-            margin-bottom: 30px;
+            margin-bottom: 50px;
           }
 
           .pricing-title {
@@ -462,7 +500,7 @@ const PremiumPricingSection = () => {
 
       <div className="pricing-container">
         <div className="pricing-header">
-          <div className="pricing-eyebrow lp-eyebrow lp-eyebrow--light">Transparent Pricing</div>
+          <div className="pricing-eyebrow lp-eyebrow  ">Transparent Pricing</div>
           <h2 className="pricing-title">Simple, honest pricing</h2>
           <p className="pricing-subtitle">30-day subscriptions. No hidden fees. Cancel anytime.</p>
         </div>
@@ -485,7 +523,7 @@ const PremiumPricingSection = () => {
         </div>
 
         <div className="pricing-plans">
-          {plans.map((plan, index) => {
+          {plans.map((plan: Plan, index: number) => {
             const price = getPrice(plan);
             const savings = getSavings(plan);
 
@@ -520,7 +558,7 @@ const PremiumPricingSection = () => {
                 <p className="pricing-plan-desc">{plan.description}</p>
 
                 <ul className="pricing-features">
-                  {plan.features.map((feature, idx) => (
+                  {plan.features.map((feature: Feature, idx: number) => (
                     <li key={idx} className={feature.included ? 'included' : 'disabled'}>
                       <svg viewBox="0 0 16 16" fill="none">
                         {feature.included ? (
