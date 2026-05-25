@@ -1,31 +1,38 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { DemoOne} from '@/components/logomarque'
+import { DemoOne } from '@/components/logomarque'
 import { Typewriter } from '@/components/ui/typewritter'
-import   PremiumFeaturesCarousel  from '@/components/Sections/features'
+import PremiumFeaturesCarousel from '@/components/Sections/features'
 import Avatar11 from '@/components/ui/avatar-11'
-import PremiumPricingSection from '../components/Sections/Priceing';
+import PremiumPricingSection from '../components/Sections/Priceing'
  
- 
- 
- 
- 
-
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [contactForm, setContactForm] = useState({ name: '', email: '', restaurant: '', message: '' })
+  const [contactSent, setContactSent] = useState(false)
+  const [contactLoading, setContactLoading] = useState(false)
   const heroRef = useRef<HTMLDivElement>(null)
-    const containerRef = useRef<HTMLDivElement>(null)
-
+ 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+ 
+  const handleContact = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setContactLoading(true)
+    // Replace with your actual contact API call
+    await new Promise(r => setTimeout(r, 1200))
+    setContactSent(true)
+    setContactLoading(false)
+  }
 
   return (
     <div className="lp-root">
+ 
       {/* ── NAV ─────────────────────────────────────────────── */}
       <nav className={`lp-nav ${scrolled ? 'lp-nav--scrolled' : ''}`}>
         <div className="lp-nav__inner">
@@ -48,13 +55,16 @@ export default function LandingPage() {
             <a href="#how" className="lp-nav__link">How it works</a>
             <a href="#pricing" className="lp-nav__link">Pricing</a>
             <a href="#testimonials" className="lp-nav__link">Reviews</a>
+            <a href="#contact" className="lp-nav__link">Contact</a>
           </div>
           <div className="lp-nav__cta">
             <Link href="/signin" className="lp-btn lp-btn--ghost">Sign in</Link>
             <Link href="/signup" className="lp-btn lp-btn--primary">Get started free</Link>
           </div>
-          <button className="lp-hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-            <span/><span/><span/>
+          <button className="lp-hamburger" aria-label="Toggle menu" onClick={() => setMenuOpen(!menuOpen)}>
+            <span className={menuOpen ? 'lp-ham--open-1' : ''} />
+            <span className={menuOpen ? 'lp-ham--open-2' : ''} />
+            <span className={menuOpen ? 'lp-ham--open-3' : ''} />
           </button>
         </div>
         {menuOpen && (
@@ -62,29 +72,34 @@ export default function LandingPage() {
             <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
             <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
             <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
+            <a href="#testimonials" onClick={() => setMenuOpen(false)}>Reviews</a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+            <div className="lp-mobile-menu__divider" />
             <Link href="/signin" onClick={() => setMenuOpen(false)}>Sign in</Link>
-            <Link href="/signup" className="lp-btn lp-btn--primary" onClick={() => setMenuOpen(false)}>Get started free</Link>
+            <Link href="/signup" className="lp-btn lp-btn--primary lp-btn--mobile" onClick={() => setMenuOpen(false)}>
+              Get started free
+            </Link>
           </div>
         )}
       </nav>
-
+ 
       {/* ── HERO ────────────────────────────────────────────── */}
       <section className="lp-hero" ref={heroRef}>
         <div className="lp-hero__bg">
-          <div className="lp-hero__blob lp-hero__blob--1"/>
-          <div className="lp-hero__blob lp-hero__blob--2"/>
-          <div className="lp-hero__grid"/>
+          <div className="lp-hero__blob lp-hero__blob--1" />
+          <div className="lp-hero__blob lp-hero__blob--2" />
+          <div className="lp-hero__blob lp-hero__blob--3" />
+          <div className="lp-hero__grid" />
         </div>
         <div className="lp-hero__inner">
           <div className="lp-hero__content">
             <div className="lp-badge">
-              <span className="lp-badge__dot"/>
+              <span className="lp-badge__dot" />
               Trusted by 10+ restaurants in Ethiopia
             </div>
             <h1 className="lp-hero__title">
-              Your menu,<br/>
-             <div> <Typewriter   words={["beautifully digital."]} className="lp-hero__title--accent" /></div>
-              {/* <span className="lp-hero__title--accent">beautifully digital.</span> */}
+              Your menu,<br />
+              <Typewriter words={['beautifully digital.', 'always up to date.', 'in customers\' hands.']} className="lp-hero__title--accent" />
             </h1>
             <p className="lp-hero__sub">
               Create stunning digital menus, generate QR codes instantly, and let customers browse from their phones — no app download required.
@@ -104,12 +119,12 @@ export default function LandingPage() {
                 <span className="lp-stat__num">10+</span>
                 <span className="lp-stat__label">Restaurants</span>
               </div>
-              <div className="lp-stat__divider"/>
+              <div className="lp-stat__divider" />
               <div className="lp-stat">
                 <span className="lp-stat__num">200+</span>
                 <span className="lp-stat__label">Menu scans / mo</span>
               </div>
-              <div className="lp-stat__divider"/>
+              <div className="lp-stat__divider" />
               <div className="lp-stat">
                 <span className="lp-stat__num">2 min</span>
                 <span className="lp-stat__label">To go live</span>
@@ -119,7 +134,7 @@ export default function LandingPage() {
           <div className="lp-hero__visual">
             <div className="lp-phone">
               <div className="lp-phone__shell">
-                <div className="lp-phone__notch"/>
+                <div className="lp-phone__notch" />
                 <div className="lp-phone__screen">
                   <img
                     src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80&auto=format&fit=crop"
@@ -129,36 +144,15 @@ export default function LandingPage() {
                   <div className="lp-phone__overlay">
                     <div className="lp-phone__card">
                       <div className="lp-phone__card-tag">Starters</div>
-                      <div className="lp-phone__card-item">
-                        <span>Sambusa</span><span>45 ETB</span>
-                      </div>
-                      <div className="lp-phone__card-item">
-                        <span>Tibs fitfit</span><span>185 ETB</span>
-                      </div>
-                      <div className="lp-phone__card-item">
-                        <span>Kategna</span><span>60 ETB</span>
-                      </div>
+                      <div className="lp-phone__card-item"><span>Sambusa</span><span>45 ETB</span></div>
+                      <div className="lp-phone__card-item"><span>Tibs fitfit</span><span>185 ETB</span></div>
+                      <div className="lp-phone__card-item"><span>Kategna</span><span>60 ETB</span></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="lp-phone__qr">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://menuqr.com/demo" alt="QR code" className="lp-phone__qr-img"/>
-                {/* <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                  <rect x="2" y="2" width="22" height="22" rx="3" fill="#16a34a" opacity=".15"/>
-                  <rect x="6" y="6" width="14" height="14" rx="2" fill="#16a34a" opacity=".4"/>
-                  <rect x="9" y="9" width="8" height="8" rx="1" fill="#16a34a"/>
-                  <rect x="32" y="2" width="22" height="22" rx="3" fill="#16a34a" opacity=".15"/>
-                  <rect x="36" y="6" width="14" height="14" rx="2" fill="#16a34a" opacity=".4"/>
-                  <rect x="39" y="9" width="8" height="8" rx="1" fill="#16a34a"/>
-                  <rect x="2" y="32" width="22" height="22" rx="3" fill="#16a34a" opacity=".15"/>
-                  <rect x="6" y="36" width="14" height="14" rx="2" fill="#16a34a" opacity=".4"/>
-                  <rect x="9" y="39" width="8" height="8" rx="1" fill="#16a34a"/>
-                  <rect x="32" y="32" width="8" height="8" rx="1" fill="#16a34a"/>
-                  <rect x="46" y="32" width="8" height="8" rx="1" fill="#16a34a"/>
-                  <rect x="32" y="46" width="8" height="8" rx="1" fill="#16a34a"/>
-                  <rect x="46" y="46" width="8" height="8" rx="1" fill="#16a34a"/>
-                </svg> */}
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://menuqr.com/demo" alt="QR code" className="lp-phone__qr-img" />
                 <span>Scan me</span>
               </div>
               <div className="lp-phone__float lp-phone__float--1">
@@ -173,15 +167,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* ── LOGOS / SOCIAL PROOF ────────────────────────────── */}
+ 
+      {/* ── LOGOS ───────────────────────────────────────────── */}
       <section className="lp-logos">
         <p className="lp-logos__label">Trusted by leading restaurants across Ethiopia</p>
         <div className="lp-logos__row">
-  
-       
           <DemoOne />
-        
         </div>
       </section>
 
@@ -381,6 +372,172 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+         <section className="lp-contact" id="contact">
+        <div className="lp-contact__inner">
+ 
+          {/* Left info panel */}
+          <div className="lp-contact__info">
+            <div className="lp-eyebrow lp-eyebrow--light">Contact</div>
+            <h2 className="lp-contact__title">Get in touch with us</h2>
+            <p className="lp-contact__sub">
+              Have a question, need a demo, or want to talk about custom features for your restaurant? We're here to help.
+            </p>
+ 
+            <div className="lp-contact__details">
+              <a href="mailto:hello@menuqr.et" className="lp-contact__detail">
+                <div className="lp-contact__detail-icon">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 7l7 4 7-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </div>
+                <div>
+                  <p className="lp-contact__detail-label">Email us</p>
+                  <p className="lp-contact__detail-value">hello@menuqr.et</p>
+                </div>
+              </a>
+ 
+              <a href="tel:+251911000000" className="lp-contact__detail">
+                <div className="lp-contact__detail-icon">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 3h3.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5L12 11l4 1.5V16a1 1 0 01-1 1C6.163 17 1 11.837 1 5.5A1.5 1.5 0 013 4V3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+                </div>
+                <div>
+                  <p className="lp-contact__detail-label">Call us</p>
+                  <p className="lp-contact__detail-value">+251 911 000 000</p>
+                </div>
+              </a>
+ 
+              <div className="lp-contact__detail">
+                <div className="lp-contact__detail-icon">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1C5.686 1 3 3.686 3 7c0 4.5 6 10 6 10s6-5.5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.5"/><circle cx="9" cy="7" r="2" stroke="currentColor" strokeWidth="1.5"/></svg>
+                </div>
+                <div>
+                  <p className="lp-contact__detail-label">Find us</p>
+                  <p className="lp-contact__detail-value">Bole, Addis Ababa, Ethiopia</p>
+                </div>
+              </div>
+ 
+              <div className="lp-contact__detail">
+                <div className="lp-contact__detail-icon">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M9 5v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </div>
+                <div>
+                  <p className="lp-contact__detail-label">Support hours</p>
+                  <p className="lp-contact__detail-value">Mon–Sat, 8 AM – 6 PM EAT</p>
+                </div>
+              </div>
+            </div>
+ 
+            {/* Social links */}
+            <div className="lp-contact__socials">
+              <a href="#" className="lp-contact__social" aria-label="Telegram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.61c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.105l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.445c.535-.194 1.003.13.37.465z"/></svg>
+              </a>
+              <a href="#" className="lp-contact__social" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" strokeWidth="0"/></svg>
+              </a>
+              <a href="#" className="lp-contact__social" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97H15.83c-1.49 0-1.955.93-1.955 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+              </a>
+            </div>
+          </div>
+ 
+          {/* Right form */}
+          <div className="lp-contact__form-wrap">
+            {contactSent ? (
+              <div className="lp-contact__success">
+                <div className="lp-contact__success-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#16a34a" strokeWidth="2"/><path d="M9 16l5 5 9-9" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <h3 className="lp-contact__success-title">Message sent!</h3>
+                <p className="lp-contact__success-sub">We'll get back to you within 24 hours. Thank you for reaching out.</p>
+                <button
+                  onClick={() => { setContactSent(false); setContactForm({ name: '', email: '', restaurant: '', message: '' }) }}
+                  className="lp-contact__success-btn"
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleContact} className="lp-contact__form">
+                <div className="lp-contact__form-header">
+                  <h3 className="lp-contact__form-title">Send us a message</h3>
+                  <p className="lp-contact__form-sub">We typically reply within a few hours.</p>
+                </div>
+ 
+                <div className="lp-contact__row">
+                  <div className="lp-contact__field">
+                    <label className="lp-contact__label">Your name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Abebe Kebede"
+                      value={contactForm.name}
+                      onChange={e => setContactForm(f => ({ ...f, name: e.target.value }))}
+                      className="lp-contact__input"
+                    />
+                  </div>
+                  <div className="lp-contact__field">
+                    <label className="lp-contact__label">Email address</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="you@restaurant.com"
+                      value={contactForm.email}
+                      onChange={e => setContactForm(f => ({ ...f, email: e.target.value }))}
+                      className="lp-contact__input"
+                    />
+                  </div>
+                </div>
+ 
+                <div className="lp-contact__field">
+                  <label className="lp-contact__label">Restaurant name <span className="lp-contact__optional">(optional)</span></label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Habesha Kitchen"
+                    value={contactForm.restaurant}
+                    onChange={e => setContactForm(f => ({ ...f, restaurant: e.target.value }))}
+                    className="lp-contact__input"
+                  />
+                </div>
+ 
+                <div className="lp-contact__field">
+                  <label className="lp-contact__label">Message</label>
+                  <textarea
+                    required
+                    rows={5}
+                    placeholder="Tell us what you need — a demo, a question, or custom features..."
+                    value={contactForm.message}
+                    onChange={e => setContactForm(f => ({ ...f, message: e.target.value }))}
+                    className="lp-contact__input lp-contact__textarea"
+                  />
+                </div>
+ 
+                <button type="submit" disabled={contactLoading} className="lp-contact__submit">
+                  {contactLoading ? (
+                    <span className="lp-contact__spinner" />
+                  ) : (
+                    <>
+                      Send message
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+ 
+      {/* ── CTA BANNER ───────────────────────────────────────── */}
+      <section className="lp-cta">
+        <div className="lp-cta__bg" />
+        <div className="lp-cta__inner">
+          <h2 className="lp-cta__title">Ready to modernize your menu?</h2>
+          <p className="lp-cta__sub">Join Ethiopian restaurants already using MenuQR. Setup takes less than 10 minutes.</p>
+          <Link href="/signup" className="lp-btn lp-btn--cta">
+            Create your free account
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </Link>
+        </div>
+      </section>
 
       {/* ── CTA BANNER ───────────────────────────────────────── */}
       <section className="lp-cta">
@@ -396,7 +553,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────── */}
-      <footer className="lp-footer">
+   <footer className="lp-footer">
         <div className="lp-footer__inner">
           <div className="lp-footer__brand">
             <a href="#" className="lp-logo">
@@ -423,15 +580,21 @@ export default function LandingPage() {
               <a href="#how">How it works</a>
             </div>
             <div className="lp-footer__col">
+              <span className="lp-footer__col-title">Company</span>
+              <a href="#testimonials">Reviews</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <div className="lp-footer__col">
               <span className="lp-footer__col-title">Account</span>
               <Link href="/signin">Sign in</Link>
-              <Link href="/signup">Sign up</Link>
+              <Link href="/signup">Sign up free</Link>
             </div>
           </div>
         </div>
         <div className="lp-footer__bottom">
           <span>© {new Date().getFullYear()} MenuQR. All rights reserved.</span>
-          <span>Built for Ethiopia 🇪🇹</span>
+          <span>Built with ❤️ for Ethiopia 🇪🇹</span>
         </div>
       </footer>
 
