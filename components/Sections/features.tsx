@@ -5,7 +5,7 @@ const PremiumFeaturesCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [direction, setDirection] = useState('next');
-  const autoPlayRef = useRef(null);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   const features = [
     {
@@ -63,7 +63,11 @@ const PremiumFeaturesCarousel = () => {
       setActiveIndex((prev) => (prev + 1) % features.length);
     }, 5000);
 
-    return () => clearInterval(autoPlayRef.current);
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
   }, [isAutoPlay, features.length]);
 
   const handlePrev = () => {
@@ -78,7 +82,7 @@ const PremiumFeaturesCarousel = () => {
     setActiveIndex((prev) => (prev + 1) % features.length);
   };
 
-  const handleDotClick = (index) => {
+  const handleDotClick = (index: number) => {
     setIsAutoPlay(false);
     setDirection(index > activeIndex ? 'next' : 'prev');
     setActiveIndex(index);

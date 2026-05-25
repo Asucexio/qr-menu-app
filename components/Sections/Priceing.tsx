@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const PremiumPricingSection = () => {
   const [billingCycle, setBillingCycle] = useState('monthly');
-  const [hoveredPlan, setHoveredPlan] = useState(null);
+  const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
 
   const plans = [
     {
@@ -70,14 +70,14 @@ const PremiumPricingSection = () => {
     }
   ];
 
-  const getPrice = (plan) => {
+  const getPrice = (plan: { monthlyPrice: number | null; annualPrice: number | null }) => {
     if (billingCycle === 'monthly') {
       return plan.monthlyPrice;
     }
     return plan.annualPrice;
   };
 
-  const getSavings = (plan) => {
+  const getSavings = (plan: { monthlyPrice: number | null; annualPrice: number | null }) => {
     if (!plan.monthlyPrice || !plan.annualPrice) return 0;
     return Math.round((1 - plan.annualPrice / (plan.monthlyPrice * 12)) * 100);
   };
