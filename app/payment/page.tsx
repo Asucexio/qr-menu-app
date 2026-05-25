@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { CheckCircle, XCircle, Loader2, RefreshCw } from 'lucide-react'
+import { subscriptionApi } from '@/lib/api'
 import { Button } from '@/components/ui/Button'
 
 type Status = 'verifying' | 'success' | 'failed' | 'pending'
@@ -27,54 +28,37 @@ export default function PaymentReturnPage() {
       return
     }
 
-    // use fetch directly — no axios interceptors, no auth header needed
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
-    const url = `${apiUrl}/api/subscriptions/verify/${txRef}`
-
-    console.log('[Payment] calling:', url)
-
     try {
-      const res = await fetch(url, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      // no auth token needed — verify is public
+      const result = await subscriptionApi.verify(txRef)
+      console.log('[Payment page] verify result:', result)
 
-      const data = await res.json()
-      console.log('[Payment] response:', res.status, data)
-
-      if (!res.ok) {
-        setStatus('failed')
-        setMessage(data?.error || `Server error ${res.status}`)
-        return
-      }
-
-      if (data.verified && data.status === 'active') {
+      if (result.verified && result.status === 'active') {
         setStatus('success')
-        setExpiresAt(data.expires_at || null)
+        setExpiresAt(result.expires_at || null)
         setTimeout(() => router.push('/dashboard/menus'), 2500)
-      } else if (data.status === 'pending') {
+      } else if (result.status === 'pending') {
         setStatus('pending')
-        setMessage('Payment is still processing. Click "Check again" in a few seconds.')
+        setMessage('Your payment is still being processed. Click "Check again" in a few seconds.')
       } else {
         setStatus('failed')
-        setMessage(`Payment status: "${data.status}". If you completed payment, run the fix script on your server.`)
+        setMessage(`Chapa returned: "${result.status}". If you completed the payment, click "I already paid".`)
       }
     } catch (err: any) {
-      console.error('[Payment] fetch error:', err)
+      const msg = err?.response?.data?.error || err?.message || 'Unknown error'
+      console.error('[Payment page] error:', msg, err?.response?.status)
       setStatus('failed')
-      setMessage(
-        `Cannot reach the server at ${apiUrl}. ` +
-        `Make sure your backend is running and NEXT_PUBLIC_API_URL is correct in .env.local`
-      )
+      setMessage(`Error: ${msg}`)
     }
   }
 
-  useEffect(() => { verify() }, [])
+  useEffect(() => {
+    verify()
+  }, [])
 
   const handleRetry = async () => {
     setLoading(true)
     setStatus('verifying')
-    setMessage('')
     await verify()
     setLoading(false)
   }
@@ -97,7 +81,7 @@ export default function PaymentReturnPage() {
             <h1 className="text-xl font-bold text-gray-900 mb-2">Subscription activated!</h1>
             <p className="text-gray-500 text-sm mb-2">You can now create menus and generate QR codes.</p>
             {expiresAt && (
-              <p className="text-xs text-gray-400 mb-4">
+              <p className="text-xs text-gray-400 mb-6">
                 Expires {new Date(expiresAt).toLocaleDateString()}
               </p>
             )}
