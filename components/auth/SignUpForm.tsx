@@ -35,12 +35,7 @@ export function SignUpForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
-        <p className="text-gray-500 mt-2 text-sm">Start building your digital menu today</p>
-      </div>
-
+    <div className="w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           id="full_name"
@@ -76,7 +71,10 @@ export function SignUpForm() {
           error={errors.confirm_password?.message}
           {...register('confirm_password', { required: 'Please confirm password' })}
         />
-        <Button type="submit" size="lg" loading={loading} className="w-full mt-2">
+        <div className="rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs text-emerald-700">
+          Pro tip: Use your business email so your team can collaborate easily later.
+        </div>
+        <Button type="submit" size="lg" loading={loading} className="w-full mt-1">
           Create Account
         </Button>
       </form>

@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -25,12 +24,7 @@ export function SignInForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-        <p className="text-gray-500 mt-2 text-sm">Sign in to your QR Menu account</p>
-      </div>
-
+    <div className="w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           id="email"
@@ -48,7 +42,11 @@ export function SignInForm() {
           error={errors.password?.message}
           {...register('password', { required: 'Password is required' })}
         />
-        <Button type="submit" size="lg" loading={loading} className="w-full mt-2">
+        <div className="flex items-center justify-between text-xs text-slate-500">
+          <span>Secure sign in with encrypted credentials</span>
+          <span className="font-medium text-emerald-600">Need help?</span>
+        </div>
+        <Button type="submit" size="lg" loading={loading} className="w-full mt-1">
           Sign In
         </Button>
       </form>
