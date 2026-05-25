@@ -1,19 +1,5 @@
 import React, { useState } from 'react';
 
-/**
- * PREMIUM PRICING SECTION - FULLY TYPED TYPESCRIPT COMPONENT
- * 
- * This is a production-ready pricing section with:
- * ✓ Full TypeScript support with proper type definitions
- * ✓ Interactive billing toggle (Monthly/Annual)
- * ✓ Feature comparison across plans
- * ✓ Smooth animations and micro-interactions
- * ✓ Responsive design (mobile & desktop)
- * ✓ Dark theme with glassmorphism
- * ✓ Zero external dependencies
- */
-
-// Type Definitions
 interface Feature {
   text: string;
   included: boolean;
@@ -34,12 +20,10 @@ interface Plan {
 
 type BillingCycle = 'monthly' | 'annual';
 
-// Main Component
 const PremiumPricingSection: React.FC = () => {
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('monthly');
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
 
-  // Plans data with full type safety
   const plans: Plan[] = [
     {
       id: 'basic',
@@ -106,7 +90,6 @@ const PremiumPricingSection: React.FC = () => {
     }
   ];
 
-  // Helper: Get price based on billing cycle
   const getPrice = (plan: Plan): number | null => {
     if (billingCycle === 'monthly') {
       return plan.monthlyPrice;
@@ -114,7 +97,6 @@ const PremiumPricingSection: React.FC = () => {
     return plan.annualPrice;
   };
 
-  // Helper: Calculate savings percentage
   const getSavings = (plan: Plan): number => {
     if (!plan.monthlyPrice || !plan.annualPrice) return 0;
     return Math.round((1 - plan.annualPrice / (plan.monthlyPrice * 12)) * 100);
@@ -500,7 +482,7 @@ const PremiumPricingSection: React.FC = () => {
 
       <div className="pricing-container">
         <div className="pricing-header">
-          <div className="pricing-eyebrow lp-eyebrow  ">Transparent Pricing</div>
+          <div className="pricing-eyebrow">Transparent Pricing</div>
           <h2 className="pricing-title">Simple, honest pricing</h2>
           <p className="pricing-subtitle">30-day subscriptions. No hidden fees. Cancel anytime.</p>
         </div>
