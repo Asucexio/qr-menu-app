@@ -2,12 +2,12 @@
 import { useEffect, useState } from 'react'
 import { CheckCircle, CreditCard, Clock, Zap } from 'lucide-react'
 import toast from 'react-hot-toast'
-import { subscriptionApi } from '../../../../lib/api'
-import { useAuthStore } from '../../../../store/authStore'
-import { Button } from '../../../../components/ui/Button'
-import { Badge } from '../../../../components/ui/Badge'
-import { PLANS, type Subscription } from '../../../../lib/types'
-import { formatPrice } from '../../../../lib/utils'
+import { subscriptionApi } from '@/lib/api'
+import { useAuthStore } from '@/store/authStore'
+import { Button } from '@/components/ui/Button'
+import { Badge } from '@/components/ui/Badge'
+import { PLANS, type Subscription } from '@/lib/types'
+import { formatPrice } from '@/lib/utils'
 
 export default function BillingPage() {
   const { user } = useAuthStore()

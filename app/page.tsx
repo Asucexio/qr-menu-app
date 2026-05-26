@@ -38,6 +38,7 @@ export default function LandingPage() {
         <div className="lp-nav__inner">
           <a href="#" className="lp-logo">
             <span className="lp-logo__icon">
+              {/* <img src="https://ik.imagekit.io/sl226drpx/a-modern-minimalist-logo-design-featurin_TQw6pGHPU5yrdGTrHNMXng_27zXdUYbSAOp6KFYY4-ouA_sd.jpeg" alt="" /> */}
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor"/>
                 <rect x="12" y="1" width="7" height="7" rx="1.5" fill="currentColor"/>
@@ -384,13 +385,13 @@ export default function LandingPage() {
             </p>
  
             <div className="lp-contact__details">
-              <a href="mailto:hello@menuqr.et" className="lp-contact__detail">
+              <a href="mailto:asmamewasmasuofficial@gamail.com" className="lp-contact__detail">
                 <div className="lp-contact__detail-icon">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 7l7 4 7-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
                 </div>
                 <div>
                   <p className="lp-contact__detail-label">Email us</p>
-                  <p className="lp-contact__detail-value">hello@menuqr.et</p>
+                  <p className="lp-contact__detail-value">asmamewasmasu@menuqr.et</p>
                 </div>
               </a>
  
@@ -400,7 +401,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <p className="lp-contact__detail-label">Call us</p>
-                  <p className="lp-contact__detail-value">+251 911 000 000</p>
+                  <p className="lp-contact__detail-value">+251 910113474</p>
                 </div>
               </a>
  
@@ -427,13 +428,13 @@ export default function LandingPage() {
  
             {/* Social links */}
             <div className="lp-contact__socials">
-              <a href="#" className="lp-contact__social" aria-label="Telegram">
+              <a href="https://t.me/Acu_404" className="lp-contact__social" aria-label="Telegram">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.61c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.105l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.445c.535-.194 1.003.13.37.465z"/></svg>
               </a>
-              <a href="#" className="lp-contact__social" aria-label="Instagram">
+              <a href="https://t.me/@Acu_404" className="lp-contact__social" aria-label="Instagram">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" strokeWidth="0"/></svg>
               </a>
-              <a href="#" className="lp-contact__social" aria-label="Facebook">
+              <a href="https://t.me/Acu_404" className="lp-contact__social" aria-label="Facebook">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97H15.83c-1.49 0-1.955.93-1.955 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
               </a>
             </div>
