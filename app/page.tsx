@@ -188,58 +188,7 @@ export default function LandingPage() {
             <p className="lp-section__sub">A complete digital menu platform built for Ethiopian restaurants — from setup to the customer's table in minutes.</p>
           </div>
           
-{/*         
-          <div className="lp-features">
-
-            <div className="lp-feature lp-feature--large">
-              <div className="lp-feature__content">
-                <div className="lp-feature__icon lp-feature__icon--green">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C6.03 2 2 6.03 2 11s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 4v5l3 3-1.5 1.5L9 12.5V6H11z" fill="currentColor"/></svg>
-                </div>
-                <h3 className="lp-feature__title">Live menu updates</h3>
-                <p className="lp-feature__desc">Change prices, hide sold-out items, add daily specials — updates reflect instantly on every customer's phone. No reprinting, no delay.</p>
-              </div>
-              <div className="lp-feature__visual">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80&auto=format&fit=crop" alt="Restaurant kitchen" className="lp-feature__img"/>
-                <div className="lp-feature__visual-card">
-                  <div className="lp-feature__visual-dot lp-feature__visual-dot--live"/>
-                  <span>Updated 2 sec ago</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="lp-feature-grid">
-              <div className="lp-feature">
-                <div className="lp-feature__icon lp-feature__icon--amber">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="12" y="3" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="3" y="12" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="12" y="12" width="3" height="3" rx="0.75" fill="currentColor"/><rect x="16" y="12" width="3" height="3" rx="0.75" fill="currentColor"/><rect x="12" y="16" width="3" height="3" rx="0.75" fill="currentColor"/><rect x="16" y="16" width="3" height="3" rx="0.75" fill="currentColor"/></svg>
-                </div>
-                <h3 className="lp-feature__title">Instant QR generation</h3>
-                <p className="lp-feature__desc">Get a print-ready QR code for every menu. Download as PNG, print on table cards, and you're done.</p>
-              </div>
-              <div className="lp-feature">
-                <div className="lp-feature__icon lp-feature__icon--blue">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="5" y="2" width="12" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M8 6h6M8 10h6M8 14h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                </div>
-                <h3 className="lp-feature__title">Multi-menu support</h3>
-                <p className="lp-feature__desc">Create separate lunch, dinner, drinks, and seasonal menus. Switch them active with one tap.</p>
-              </div>
-              <div className="lp-feature">
-                <div className="lp-feature__icon lp-feature__icon--purple">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>
-                </div>
-                <h3 className="lp-feature__title">Beautiful customer view</h3>
-                <p className="lp-feature__desc">Customers get a fast, gorgeous menu page — no app, no login, no friction. Just scan and browse.</p>
-              </div>
-              <div className="lp-feature">
-                <div className="lp-feature__icon lp-feature__icon--rose">
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M9 11l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="currentColor" strokeWidth="1.5"/></svg>
-                </div>
-                <h3 className="lp-feature__title">Item availability toggle</h3>
-                <p className="lp-feature__desc">Sold out of Tibs? Hide it in one click. It disappears from every customer's view immediately.</p>
-              </div>
-            </div>
-
-          </div> */}
+ 
         </div>
       </section>
       <PremiumFeaturesCarousel />
@@ -350,6 +299,18 @@ export default function LandingPage() {
       </section>
 
       {/* ── PRICING ──────────────────────────────────────────── */}
+          <section className="lp-section" id="features">
+        <div className="lp-section__inner">
+          <div className="lp-section__header">
+            <div className="lp-eyebrow">Pricing</div>
+            <div> <Typewriter   words={["Simple, transparent pricing"]} className="lp-section__title" /></div>
+            <p className="lp-section__sub">30-day subscriptions. No hidden fees. Cancel anytime.</p>
+          </div>
+          
+ 
+        </div>
+      </section>
+      
       <PremiumPricingSection />
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
@@ -690,7 +651,7 @@ export default function LandingPage() {
         .lp-section--tint { background: #f9fafb; }
         .lp-section__inner { max-width: 1200px; margin: 0 auto; }
         .lp-section__inner--narrow { max-width: 760px; }
-        .lp-section__header { text-align: center; margin-bottom: 64px; }
+        .lp-section__header { text-align: center; margin-bottom: 0px;  }
         .lp-eyebrow { display: inline-flex; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #16a34a; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
         .lp-eyebrow--light { color: #86efac; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); }
         .lp-section__title { font-family: 'Instrument Serif', serif; font-size: clamp(30px, 4vw, 46px); color: #0a0a0a; letter-spacing: -.4px; margin: 0 0 16px; line-height: 1.15; display: block; }

@@ -37,14 +37,11 @@ const PremiumPricingSection: React.FC = () => {
         { text: '1 restaurant profile', included: true },
         { text: 'Up to 3 active menus', included: true },
         { text: 'Unlimited menu items', included: true },
-        { text: 'QR code generation & download', included: true },
-        { text: 'Customer-facing menu page', included: true },
-        { text: 'Email support', included: true },
-        { text: 'Custom branding', included: false },
-        { text: 'Priority support', included: false },
+        { text: 'QR code generation & download', included: true }
+     
       ],
       cta: 'Get started',
-      color: '#3b82f6'
+      color: '#16a34a'
     },
     {
       id: 'pro',
@@ -58,14 +55,11 @@ const PremiumPricingSection: React.FC = () => {
         { text: '1 restaurant profile', included: true },
         { text: 'Unlimited active menus', included: true },
         { text: 'Unlimited menu items', included: true },
-        { text: 'QR code generation & download', included: true },
-        { text: 'Customer-facing menu page', included: true },
-        { text: 'Custom restaurant branding', included: true },
-        { text: 'Priority support', included: true },
-        { text: 'Early access to new features', included: true },
+        { text: 'QR code generation & download', included: true }
+     
       ],
       cta: 'Get started',
-      color: '#10b981'
+      color: '#4ade80'
     },
     {
       id: 'enterprise',
@@ -80,13 +74,12 @@ const PremiumPricingSection: React.FC = () => {
         { text: 'Unlimited active menus', included: true },
         { text: 'Unlimited menu items', included: true },
         { text: 'QR code generation & download', included: true },
-        { text: 'Customer-facing menu page', included: true },
-        { text: 'White-label solutions', included: true },
+  
         { text: '24/7 phone & email support', included: true },
         { text: 'Custom integrations', included: true },
       ],
       cta: 'Contact sales',
-      color: '#8b5cf6'
+      color: '#16a34a'
     }
   ];
 
@@ -113,8 +106,8 @@ const PremiumPricingSection: React.FC = () => {
 
         .premium-pricing-section {
           width: 100%;
-          background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-          padding: 100px 40px;
+          background: linear-gradient(160deg, #f0fdf4 0%, #fff 45%, #f0fdf4 100%);
+          padding: 60px 40px;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
           position: relative;
           overflow: hidden;
@@ -127,9 +120,8 @@ const PremiumPricingSection: React.FC = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: 
-            radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+          background-image: linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
+          background-size: 48px 48px;
           pointer-events: none;
           z-index: 0;
         }
@@ -143,7 +135,7 @@ const PremiumPricingSection: React.FC = () => {
 
         .pricing-header {
           text-align: center;
-          margin-bottom: 80px;
+          margin-bottom: 60px;
           animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -163,21 +155,21 @@ const PremiumPricingSection: React.FC = () => {
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: #64748b;
+          color: #888;
           margin-bottom: 16px;
         }
 
         .pricing-title {
           font-size: 48px;
           font-weight: 700;
-          color: #f1f5f9;
+          color: #0a0a0a;
           margin-bottom: 16px;
           letter-spacing: -0.5px;
         }
 
         .pricing-subtitle {
           font-size: 18px;
-          color: #cbd5e1;
+          color: #555;
           max-width: 600px;
           margin: 0 auto;
           line-height: 1.6;
@@ -188,13 +180,13 @@ const PremiumPricingSection: React.FC = () => {
           justify-content: center;
           align-items: center;
           gap: 24px;
-          margin-bottom: 80px;
+          margin-bottom: 60px;
           animation: slideUp 0.8s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
 
         .pricing-toggle-label {
           font-size: 14px;
-          color: #cbd5e1;
+          color: #555;
           font-weight: 500;
         }
 
@@ -202,21 +194,21 @@ const PremiumPricingSection: React.FC = () => {
           position: relative;
           width: 64px;
           height: 32px;
-          background: rgba(148, 163, 184, 0.2);
-          border: 2px solid rgba(148, 163, 184, 0.3);
+          background: rgba(0, 0, 0, 0.08);
+          border: 2px solid rgba(0, 0, 0, 0.1);
           border-radius: 16px;
           cursor: pointer;
           transition: all 0.3s ease;
         }
 
         .pricing-toggle:hover {
-          background: rgba(148, 163, 184, 0.3);
-          border-color: rgba(148, 163, 184, 0.5);
+          background: rgba(0, 0, 0, 0.12);
+          border-color: rgba(0, 0, 0, 0.15);
         }
 
         .pricing-toggle.active {
-          background: #10b981;
-          border-color: #059669;
+          background: #16a34a;
+          border-color: #15803d;
         }
 
         .pricing-toggle-slider {
@@ -238,7 +230,7 @@ const PremiumPricingSection: React.FC = () => {
         .pricing-badge {
           display: inline-block;
           padding: 6px 12px;
-          background: #10b981;
+          background: #16a34a;
           color: white;
           border-radius: 6px;
           font-size: 11px;
@@ -252,19 +244,20 @@ const PremiumPricingSection: React.FC = () => {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
           gap: 32px;
-          margin-bottom: 60px;
+          margin-bottom: 40px;
         }
 
         .pricing-card {
-          background: rgba(30, 41, 59, 0.8);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(148, 163, 184, 0.1);
+          background: white;
+          backdrop-filter: none;
+          border: 1px solid #e5e7eb;
           border-radius: 16px;
           padding: 40px 32px;
           position: relative;
           transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
           animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
           animation-fill-mode: both;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .pricing-card:nth-child(1) {
@@ -280,27 +273,27 @@ const PremiumPricingSection: React.FC = () => {
         }
 
         .pricing-card.highlighted {
-          border-color: #10b981;
+          border-color: #16a34a;
           transform: scale(1.02);
-          background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(30, 41, 59, 0.8) 100%);
-          box-shadow: 0 0 40px rgba(16, 185, 129, 0.15);
+          background: #f0fdf4;
+          box-shadow: 0 0 40px rgba(22, 163, 74, 0.15);
         }
 
         .pricing-card:hover {
-          border-color: rgba(148, 163, 184, 0.3);
+          border-color: #16a34a;
           transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 20px 40px rgba(22, 163, 74, 0.1);
         }
 
         .pricing-card.highlighted:hover {
           transform: scale(1.02) translateY(-8px);
-          box-shadow: 0 0 50px rgba(16, 185, 129, 0.2);
+          box-shadow: 0 0 50px rgba(22, 163, 74, 0.2);
         }
 
         .pricing-plan-name {
           font-size: 24px;
           font-weight: 700;
-          color: #f1f5f9;
+          color: #0a0a0a;
           margin-bottom: 12px;
         }
 
@@ -310,26 +303,26 @@ const PremiumPricingSection: React.FC = () => {
 
         .pricing-currency {
           font-size: 16px;
-          color: #94a3b8;
+          color: #888;
         }
 
         .pricing-amount {
           font-size: 48px;
           font-weight: 700;
-          color: #f1f5f9;
+          color: #0a0a0a;
           line-height: 1;
         }
 
         .pricing-period {
           font-size: 14px;
-          color: #64748b;
+          color: #888;
         }
 
         .pricing-savings {
           display: inline-block;
           padding: 6px 12px;
-          background: rgba(16, 185, 129, 0.2);
-          color: #86efac;
+          background: #dcfce7;
+          color: #15803d;
           border-radius: 6px;
           font-size: 12px;
           font-weight: 600;
@@ -338,7 +331,7 @@ const PremiumPricingSection: React.FC = () => {
 
         .pricing-plan-desc {
           font-size: 14px;
-          color: #cbd5e1;
+          color: #555;
           line-height: 1.6;
           margin: 20px 0 32px;
         }
@@ -353,10 +346,10 @@ const PremiumPricingSection: React.FC = () => {
           align-items: center;
           gap: 12px;
           padding: 12px 0;
-          color: #cbd5e1;
+          color: #555;
           font-size: 14px;
           line-height: 1.5;
-          border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+          border-bottom: 1px solid #e5e7eb;
         }
 
         .pricing-features li:last-child {
@@ -365,7 +358,7 @@ const PremiumPricingSection: React.FC = () => {
 
         .pricing-features li.disabled {
           opacity: 0.5;
-          color: #64748b;
+          color: #aaa;
         }
 
         .pricing-features svg {
@@ -375,11 +368,11 @@ const PremiumPricingSection: React.FC = () => {
         }
 
         .pricing-features li.included svg {
-          color: #10b981;
+          color: #16a34a;
         }
 
         .pricing-features li.disabled svg {
-          color: #475569;
+          color: #ddd;
         }
 
         .pricing-cta {
@@ -398,63 +391,64 @@ const PremiumPricingSection: React.FC = () => {
 
         .pricing-cta--outline {
           background: transparent;
-          border-color: rgba(148, 163, 184, 0.3);
-          color: #cbd5e1;
+          border-color: #e5e7eb;
+          color: #555;
         }
 
         .pricing-cta--outline:hover {
-          background: rgba(148, 163, 184, 0.1);
-          border-color: rgba(148, 163, 184, 0.5);
-          color: #f1f5f9;
+          background: #f0fdf4;
+          border-color: #16a34a;
+          color: #0a0a0a;
         }
 
         .pricing-cta--solid {
-          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+          background: #16a34a;
           color: white;
-          border-color: #10b981;
+          border-color: #16a34a;
         }
 
         .pricing-cta--solid:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+          box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+          background: #15803d;
         }
 
         .pricing-footer-note {
           text-align: center;
-          color: #94a3b8;
+          color: #888;
           font-size: 14px;
           margin-bottom: 20px;
         }
 
         .pricing-footer-note strong {
-          color: #cbd5e1;
+          color: #555;
         }
 
         .pricing-faq-hint {
           text-align: center;
-          color: #64748b;
+          color: #aaa;
           font-size: 13px;
           margin-top: 12px;
         }
 
         .pricing-faq-hint a {
-          color: #10b981;
+          color: #16a34a;
           text-decoration: none;
           font-weight: 600;
           transition: color 0.3s ease;
         }
 
         .pricing-faq-hint a:hover {
-          color: #059669;
+          color: #15803d;
         }
 
         @media (max-width: 768px) {
           .premium-pricing-section {
-            padding: 60px 20px;
+            padding: 40px 20px;
           }
 
           .pricing-header {
-            margin-bottom: 50px;
+            margin-bottom: 40px;
           }
 
           .pricing-title {
@@ -481,11 +475,11 @@ const PremiumPricingSection: React.FC = () => {
       `}</style>
 
       <div className="pricing-container">
-        <div className="pricing-header">
+        {/* <div className="pricing-header">
           <div className="pricing-eyebrow">Transparent Pricing</div>
           <h2 className="pricing-title">Simple, honest pricing</h2>
           <p className="pricing-subtitle">30-day subscriptions. No hidden fees. Cancel anytime.</p>
-        </div>
+        </div> */}
 
         <div className="pricing-toggle-container">
           <span className="pricing-toggle-label">Monthly</span>
