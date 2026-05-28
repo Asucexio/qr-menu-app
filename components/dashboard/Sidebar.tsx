@@ -39,15 +39,15 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-6 py-6 border-b border-gray-100">
         <Link href="/dashboard" className="flex items-center gap-2.5 group">
-          <Image
-            src="/grok-image-56a72e42-b19a-46fa-b7fc-1322508bd538.svg"
-            alt="QR Menu Logo"
+          <img
+            src="https://ik.imagekit.io/sl226drpx/grok-image-56a72e42-b19a-46fa-b7fc-1322508bd538-removebg-preview.png"
+            alt="Hamenu Logo"
             width={32}
             height={32}
             className="w-8 h-8 rounded-lg shadow-sm"
           />
           <div>
-            <span className="font-bold text-gray-900 text-sm tracking-tight">QR Menu</span>
+            <span className="font-bold text-gray-900 text-sm tracking-tight">hamenu</span>
             <span className="block text-[10px] text-gray-400 leading-none mt-0.5 font-medium tracking-widest uppercase">Studio</span>
           </div>
         </Link>
