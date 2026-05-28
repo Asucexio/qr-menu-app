@@ -98,16 +98,16 @@ export const PLANS = [
   {
     id: 'basic' as const,
     name: 'Basic',
-    price: 199,
+    price: 499,
     currency: 'ETB',
-    features: ['1 restaurant', 'Up to 3 menus', 'Unlimited items', 'QR code generation', 'Email support'],
+    features: ['1 restaurant', 'Up to 1 menus', 'Unlimited items', 'QR code generation', 'Email support'],
   },
   {
     id: 'pro' as const,
     name: 'Pro',
-    price: 499,
+    price: 999,
     currency: 'ETB',
-    features: ['1 restaurant', 'Unlimited menus', 'Unlimited items', 'QR code generation', 'Custom branding', 'Priority support'],
+    features: ['1 restaurant', 'Up to 3 menus', 'Unlimited items', 'QR code generation', 'Custom branding', 'Priority support'],
     popular: true,
   },
 ]

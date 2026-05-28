@@ -28,8 +28,8 @@ const PremiumPricingSection: React.FC = () => {
     {
       id: 'basic',
       name: 'Basic',
-      monthlyPrice: 199,
-      annualPrice: 1990,
+      monthlyPrice: 499,
+      annualPrice: 5499,
       description: 'Perfect for small restaurants getting started with digital menus.',
       badge: null,
       highlighted: false,
@@ -46,8 +46,8 @@ const PremiumPricingSection: React.FC = () => {
     {
       id: 'pro',
       name: 'Pro',
-      monthlyPrice: 499,
-      annualPrice: 4990,
+      monthlyPrice: 999,
+      annualPrice: 9990,
       description: 'For restaurants that want unlimited menus and premium features.',
       badge: 'Most popular',
       highlighted: true,

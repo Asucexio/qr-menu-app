@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   LayoutDashboard, UtensilsCrossed, QrCode,
-  CreditCard, Settings, LogOut, ChefHat,
+  CreditCard, Settings, LogOut,
 } from 'lucide-react'
+import Image from 'next/image'
 import { useAuthStore } from '@/store/authStore'
 import { cn } from '@/lib/utils'
 
@@ -38,9 +39,13 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-6 py-6 border-b border-gray-100">
         <Link href="/dashboard" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center shadow-sm">
-            <ChefHat size={16} className="text-white" />
-          </div>
+          <Image
+            src="/grok-image-56a72e42-b19a-46fa-b7fc-1322508bd538.svg"
+            alt="QR Menu Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8 rounded-lg shadow-sm"
+          />
           <div>
             <span className="font-bold text-gray-900 text-sm tracking-tight">QR Menu</span>
             <span className="block text-[10px] text-gray-400 leading-none mt-0.5 font-medium tracking-widest uppercase">Studio</span>

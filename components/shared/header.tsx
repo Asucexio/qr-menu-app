@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, QrCode, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -24,9 +25,13 @@ export function Header() {
           className="flex items-center gap-2.5 text-stone-100 transition hover:text-amber-400"
           onClick={() => setMobileOpen(false)}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/10 ring-1 ring-amber-500/25">
-            <QrCode className="h-5 w-5 text-amber-500" strokeWidth={1.5} />
-          </span>
+          <Image
+            src="/grok-image-56a72e42-b19a-46fa-b7fc-1322508bd538.svg"
+            alt="QR Menu Logo"
+            width={40}
+            height={40}
+            className="h-9 w-9"
+          />
           <span className="text-sm font-semibold tracking-tight sm:text-base">
             QR Menu Builder
           </span>
