@@ -1,7 +1,8 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   UtensilsCrossed,
@@ -9,166 +10,146 @@ import {
   CreditCard,
   Settings,
   LogOut,
-} from 'lucide-react'
+} from "lucide-react";
+import { useAuthStore } from "@/store/authStore";
 
-import { useAuthStore } from '@/store/authStore'
-import { cn } from '@/lib/utils'
-
-const NAV = [
+const NAV_ITEMS = [
   {
-    href: '/dashboard',
-    label: 'Home',
+    label: "Overview",
+    href: "/dashboard",
     icon: LayoutDashboard,
   },
   {
-    href: '/dashboard/menus',
-    label: 'Menus',
+    label: "Menus",
+    href: "/dashboard/menus",
     icon: UtensilsCrossed,
   },
   {
-    href: '/dashboard/qr',
-    label: 'QR',
+    label: "QR Codes",
+    href: "/dashboard/qr",
     icon: QrCode,
   },
   {
-    href: '/dashboard/billing',
-    label: 'Billing',
+    label: "Billing",
+    href: "/dashboard/billing",
     icon: CreditCard,
   },
   {
-    href: '/dashboard/settings',
-    label: 'Settings',
+    label: "Settings",
+    href: "/dashboard/settings",
     icon: Settings,
   },
-]
+];
 
 export function Sidebar() {
-  const pathname = usePathname()
-  const router = useRouter()
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const { user, signOut } = useAuthStore()
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  const { user, signOut } = useAuthStore();
+
+  const email = user?.email || "";
+  const initial = email.charAt(0).toUpperCase() || "U";
 
   const handleSignOut = async () => {
-    await signOut()
-    router.push('/auth/signin')
-  }
-
-  const initials = (user?.full_name || 'U')
-    .split(' ')
-    .map((n) => n[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase()
-
-  const isActive = (href: string) => {
-    if (href === '/dashboard') {
-      return pathname === href
+    try {
+      await signOut();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
     }
-
-    return pathname.startsWith(href)
-  }
+  };
 
   return (
     <>
-      {/* ================= DESKTOP SIDEBAR ================= */}
-
-      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[232px] flex-col border-r border-gray-100 bg-white lg:flex">
+      {/* =====================================================
+          DESKTOP SIDEBAR
+      ====================================================== */}
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-[232px] border-r border-gray-200 bg-white lg:flex lg:flex-col">
         {/* Logo */}
-
-        <div className="border-b border-gray-100 px-6 py-6">
+        <div className="flex h-16 items-center px-6">
           <Link
             href="/dashboard"
-            className="flex items-center gap-2.5"
+            className="flex items-center gap-2"
           >
             <img
               src="https://ik.imagekit.io/sl226drpx/grok-image-56a72e42-b19a-46fa-b7fc-1322508bd538-removebg-preview.png"
-              alt="Hamenu Logo"
+              alt="Hamenu"
               width={32}
               height={32}
-              className="h-8 w-8 rounded-lg shadow-sm"
+              className="h-8 w-8 rounded-lg"
             />
 
-            <div>
-              <span className="text-sm font-bold tracking-tight text-gray-900">
-                hamenu
-              </span>
-
-              <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-widest leading-none text-gray-400">
-                Studio
-              </span>
-            </div>
+            <span className="text-base font-bold text-gray-900">
+              hamenu
+            </span>
           </Link>
         </div>
 
         {/* Navigation */}
+        <nav className="flex-1 px-3 py-5">
+          <div className="space-y-1">
+            {NAV_ITEMS.map((item) => {
+              const Icon = item.icon;
 
-        <nav className="flex-1 space-y-0.5 overflow-y-auto px-3 py-4">
-          {NAV.map(({ href, label, icon: Icon }) => {
-            const active = isActive(href)
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/dashboard" &&
+                  pathname.startsWith(item.href));
 
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                  active
-                    ? 'bg-green-50 text-green-700'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-                )}
-              >
-                <Icon
-                  size={17}
-                  className={
-                    active
-                      ? 'text-green-600'
-                      : 'text-gray-400'
-                  }
-                />
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                    isActive
+                      ? "bg-green-50 text-green-700"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
 
-                {label}
-
-                {active && (
-                  <span className="ml-auto h-1.5 w-1.5 rounded-full bg-green-500" />
-                )}
-              </Link>
-            )
-          })}
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+          </div>
         </nav>
 
-        {/* User */}
-
-        <div className="space-y-1 border-t border-gray-100 px-3 pb-4 pt-3">
-          <div className="flex items-center gap-3 rounded-lg px-3 py-2.5">
-            <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
-              {initials}
+        {/* Desktop User */}
+        <div className="border-t border-gray-100 p-4">
+          <div className="mb-3 flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
+              {initial}
             </div>
 
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-semibold text-gray-800">
-                {user?.full_name || 'Owner'}
+            <div className="min-w-0">
+              <p className="text-xs text-gray-500">
+                Signed in as
               </p>
 
-              <p className="truncate text-[11px] text-gray-400">
-                {user?.email}
+              <p className="truncate text-sm font-medium text-gray-900">
+                {email}
               </p>
             </div>
           </div>
 
           <button
             onClick={handleSignOut}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-red-600 transition hover:bg-red-50"
           >
-            <LogOut size={16} />
-
-            Sign out
+            <LogOut className="h-4 w-4" />
+            <span>Logout</span>
           </button>
         </div>
       </aside>
 
-      {/* ================= MOBILE TOP BAR ================= */}
-
-      <header className="flex h-14 items-center justify-between border-b border-gray-100 bg-white px-4 lg:hidden">
+      {/* =====================================================
+          MOBILE HEADER
+      ====================================================== */}
+      <header className="relative flex h-14 items-center justify-between border-b border-gray-100 bg-white px-4 lg:hidden">
+        {/* Logo */}
         <Link
           href="/dashboard"
           className="flex items-center gap-2"
@@ -186,37 +167,80 @@ export function Sidebar() {
           </span>
         </Link>
 
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
-          {initials}
+        {/* Mobile Profile */}
+        <div className="relative">
+          <button
+            onClick={() => setProfileOpen(!profileOpen)}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700 transition hover:bg-green-200"
+            aria-label="Open profile menu"
+          >
+            {initial}
+          </button>
+
+          {/* Profile Dropdown */}
+          {profileOpen && (
+            <div className="absolute right-0 top-11 z-50 w-64 rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
+              {/* User information */}
+              <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
+                  {initial}
+                </div>
+
+                <div className="min-w-0">
+                  <p className="text-xs font-medium text-gray-500">
+                    Signed in as
+                  </p>
+
+                  <p className="truncate text-sm font-medium text-gray-900">
+                    {email}
+                  </p>
+                </div>
+              </div>
+
+              {/* Logout */}
+              <button
+                onClick={handleSignOut}
+                className="mt-2 flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
-      {/* ================= MOBILE BOTTOM NAV ================= */}
+      {/* =====================================================
+          MOBILE BOTTOM NAVIGATION
+      ====================================================== */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-200 bg-white lg:hidden">
+        <div className="grid grid-cols-5">
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon;
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white/95 px-2 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
-        <div className="mx-auto flex max-w-md items-center justify-around">
-          {NAV.map(({ href, label, icon: Icon }) => {
-            const active = isActive(href)
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/dashboard" &&
+                pathname.startsWith(item.href));
 
             return (
               <Link
-                key={href}
-                href={href}
-                className={cn(
-                  'flex min-w-[60px] flex-col items-center gap-1 px-2 py-2 text-[10px] font-medium transition-colors',
-                  active
-                    ? 'text-green-600'
-                    : 'text-gray-400'
-                )}
+                key={item.href}
+                href={item.href}
+                className={`flex flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-medium transition ${
+                  isActive
+                    ? "text-green-700"
+                    : "text-gray-500 hover:text-gray-900"
+                }`}
               >
-                <Icon size={19} />
+                <Icon className="h-5 w-5" />
 
-                <span>{label}</span>
+                <span>{item.label}</span>
               </Link>
-            )
+            );
           })}
         </div>
       </nav>
     </>
-  )
+  );
 }
